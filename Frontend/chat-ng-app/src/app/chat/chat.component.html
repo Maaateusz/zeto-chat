@@ -1,0 +1,24 @@
+<h1>Chat !!! </h1>
+Wiadaomość:<br>
+{{message}}<br>
+<div class="Block" onLoad="uploadDocument(file)">
+  <label id="lbl">Code </label>
+  <input type='file' (change)="fileChanged($event)">
+</div>
+<form name="form" #f="ngForm" (submit)="sendMessage()">
+  <textarea type="textarea" rows="3" [value]="message" name="message" [(ngModel)]="message"></textarea> <br>
+  <button type="submit">Send</button>
+</form>
+
+<a routerLink="/logout">Log Out</a>
+
+<p *ngFor="let u of users">
+  <li>{{u.name}}</li>
+</p>
+
+<input type="file" (change)="onChange($event.target.files)">
+
+<div>
+  <h3>File Content</h3>
+  <pre> {{fileContent}} </pre>
+</div>
