@@ -1,8 +1,8 @@
 <h1>Rejestracja</h1>
-<form name="form" #f="ngForm" (submit)="sendRegistration()">
-  <input type="text" name="name" [(ngModel)]="model.name"/>Name: {{model.name}} <br>
-  <input type="password" name="password" [(ngModel)]="model.password"/>Password: {{model.password}} <br>
-  <input type="password" name="password2" [(ngModel)]="password2"/>Password2: {{password2}} <br>
+<form name="form" #f="ngForm" (submit)="registration()">
+  <input type="text" name="name" [(ngModel)]="user.name" />Name: {{user.name}} <br>
+  <input type="password" name="password" [(ngModel)]="user.password" />Password: {{user.password}} <br>
+  <input type="password" name="password2" [(ngModel)]="password2" />Password2: {{password2}} <br>
   <button type="submit">Create</button>
 </form>
 

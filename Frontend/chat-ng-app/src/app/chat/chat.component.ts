@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {User} from "../user";
+import { HttpClient } from "@angular/common/http";
+import { Room } from "../room";
 
 @Component({
   selector: 'app-chat',
@@ -8,29 +8,40 @@ import {User} from "../user";
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  users: User[] = [];
-  message='...';
+  rooms: Room[] = [];
+  message = '...';
+
+  room: Room =
+    {
+      id: 1,
+      name: ''
+    };
 
   constructor(private http: HttpClient) { }
 
   ngOnInit()  //przy uruchomieniu strony
   {
-    this.getAllUsers();
+    this.getAllRooms();
+    //this.setUser();
   }
 
-  sendMessage()
-  {
+  setUser() {
+    //this.user=JSON.parse(localStorage.getItem(userS));
+  }
+
+  sendMessage() {
     alert("wysłano!");
   }
 
-  getAllUsers()
-  {
-    let url = "http://localhost:8080/user/all";
-    this.http.get<User[]>(url).subscribe(
+  getAllRooms() {
+    let url = "http://localhost:8080/room/all";
+    this.http.get<Room[]>(url).subscribe(
       res => {
-        this.users = res; },
+        this.rooms = res;
+      },
       err => {
-        alert("Errorrinhoo!") }
+        alert("Errorrinhoo!")
+      }
     );
   }
 
@@ -39,9 +50,9 @@ export class ChatComponent implements OnInit {
   public onChange(fileList: FileList): void {
     let file = fileList[0];
     let fileReader: FileReader = new FileReader();
-    let self = this;
-    fileReader.onloadend = function(x) {
-      self.fileContent = fileReader.result;
+    let self;
+    fileReader.onloadend = function (x) {
+      self = fileReader.result;
     }
     fileReader.readAsText(file);
   }

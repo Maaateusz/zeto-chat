@@ -1,9 +1,8 @@
 <h1>Logowanie</h1>
-<form name="form" #f="ngForm" (submit)="sendLogin()">
-  <input type="text" name="name" [(ngModel)]="model.name"/>Name: {{model.name}} <br>
-  <input type="password" name="password" [(ngModel)]="model.password"/>Password: {{model.password}} <br>
+<form name="form" #f="ngForm" (submit)="login()">
+  <input type="text" name="name" [(ngModel)]="user.name" />Name: {{user.name}} <br>
+  <input type="password" name="password" [(ngModel)]="user.password" />Password: {{user.password}} <br>
   <button type="submit">Login</button>
 </form>
 
 <a routerLink="/registration">Create Account</a>
-

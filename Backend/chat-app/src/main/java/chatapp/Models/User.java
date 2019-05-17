@@ -1,9 +1,6 @@
 package chatapp.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User
@@ -14,18 +11,28 @@ public class User
     private String name;
     private String password;
 
+    /*@Transient
+    private String passwordConfirm;*/
+
     public User(Integer id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public Integer getId() {
         return id;
     }
+
+    /* String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }*/
 
     public void setId(Integer id) {
         this.id = id;

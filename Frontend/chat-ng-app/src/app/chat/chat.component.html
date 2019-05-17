@@ -1,4 +1,5 @@
 <h1>Chat !!! </h1>
+{{this.user.id}}
 Wiadaomość:<br>
 {{message}}<br>
 <div class="Block" onLoad="uploadDocument(file)">
@@ -12,8 +13,8 @@ Wiadaomość:<br>
 
 <a routerLink="/logout">Log Out</a>
 
-<p *ngFor="let u of users">
-  <li>{{u.name}}</li>
+<p *ngFor="let r of rooms">
+  <li>{{r.name}}</li>
 </p>
 
 <input type="file" (change)="onChange($event.target.files)">
