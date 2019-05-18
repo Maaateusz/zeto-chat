@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Room } from "../room";
+import { getLocalRefs } from '@angular/core/src/render3/discovery_utils';
 
 @Component({
   selector: 'app-chat',
@@ -10,6 +11,8 @@ import { Room } from "../room";
 export class ChatComponent implements OnInit {
   rooms: Room[] = [];
   message = '...';
+  name = 'adfgdfg';
+  password = 'ddfgdfg';
 
   room: Room =
     {
@@ -22,11 +25,18 @@ export class ChatComponent implements OnInit {
   ngOnInit()  //przy uruchomieniu strony
   {
     this.getAllRooms();
-    //this.setUser();
+    this.getLocal();
   }
 
-  setUser() {
-    //this.user=JSON.parse(localStorage.getItem(userS));
+  getLocal() {
+    this.name = localStorage.getItem('name');
+    this.password = localStorage.getItem('password');
+  }
+
+  logout() {
+    alert("ASD");
+    localStorage.clear();
+    location.assign("/login");
   }
 
   sendMessage() {
@@ -40,7 +50,7 @@ export class ChatComponent implements OnInit {
         this.rooms = res;
       },
       err => {
-        alert("Errorrinhoo!")
+        //alert("Errorrinhoo!")
       }
     );
   }

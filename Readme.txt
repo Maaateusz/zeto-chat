@@ -17,7 +17,7 @@ http://localhost:8080/
 /room/all
 /room/{id}
 
-=> Dzia³a rejestracja i logowanie, jeszcze muszê ogarn¹æ zmienne sesyjne w angularze i zajmê siê wiadomoœciami.
+=> Dzia³a rejestracja i logowanie.
 
 /========================================\
 Angular:

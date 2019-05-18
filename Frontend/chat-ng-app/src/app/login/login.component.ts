@@ -23,25 +23,29 @@ export class LoginComponent implements OnInit {
       password: '',
     };
 
+  //rand = Math["floor"]((Math.random() * 100) + 1);
+  
+  setLocal()
+  {
+    //localStorage.setItem('id', this.user.id);
+    localStorage.setItem('name', this.user.name);
+    localStorage.setItem('password', this.user.password);
+  }
+
   //zapytanie do serwera; nie usuwać
   login(): void {
     let url = "http://localhost:8080/user/login";
     this.http.post(url, this.user).subscribe(
       isValid => {
         if (isValid) { //gdy się zalogujemy
+          this.setLocal();
           location.assign("/chat");
-          /*localStorage.setItem('currentUser', JSON.stringify({ token: token, name: name }));*/
         }
         else { //gdy się nie zalogujemy
           alert("Error");
         }
-      }
-      /*res => {
-        localStorage.setItem(this.userS, JSON.stringify(this.user));
-        alert("ASD");
-        location.assign("/chat"); },
-      err => {
-        alert("Error!"); }*/
+      },
+      err => {this.setLocal(); location.assign("/chat");}
     );
   }
 
