@@ -24,8 +24,16 @@ export class ChatComponent implements OnInit {
 
   ngOnInit()  //przy uruchomieniu strony
   {
-    this.getAllRooms();
     this.getLocal();
+    this.checkSession();
+    this.getAllRooms();
+  }
+
+  checkSession() {
+    if(this.name == null || this.name == '')
+    {
+      location.assign("/login");
+    }
   }
 
   getLocal() {
@@ -34,7 +42,6 @@ export class ChatComponent implements OnInit {
   }
 
   logout() {
-    alert("ASD");
     localStorage.clear();
     location.assign("/login");
   }
@@ -53,18 +60,6 @@ export class ChatComponent implements OnInit {
         //alert("Errorrinhoo!")
       }
     );
-  }
-
-  fileContent: string = '';
-
-  public onChange(fileList: FileList): void {
-    let file = fileList[0];
-    let fileReader: FileReader = new FileReader();
-    let self;
-    fileReader.onloadend = function (x) {
-      self = fileReader.result;
-    }
-    fileReader.readAsText(file);
   }
 
 }
