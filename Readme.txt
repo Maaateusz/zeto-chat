@@ -15,9 +15,11 @@ http://localhost:8080/
 /user/registration dodaje usera
 /user/login do logowania
 /room/all
-/room/{id}
+/room/{id} 
+/message/id wiadomoœci z pokoju o id
+/message/add dodanie wiadomoœci 
 
-=> Dzia³a rejestracja i logowanie.
+=> Dzia³a rejestracja, logowanie i wiadomoœci, tylko ¿e nie najlepiej, np. nie mo¿na wysy³aæ nic enterem bo siê wszystko popsuje.
 
 /========================================\
 Angular:
@@ -60,6 +62,7 @@ Obs³uga validacji inputów:
 - nazwa min 3 znaki max 15,
 - has³o min 3 max 20,
 - w rejestracji: zgodnoœæ has³a z has³em2
+- w wiadomoœci minimum 1 znak
 tylko po spe³nieniu tych warunków fronted wysy³a ¿¹danie do backendu!
 W kodzie mo¿ecia edytowaæ wszystko, dodawaæ, usuwaæ co chcecie, byle by dzia³a³o dobrze.
 W Readme te¿ mo¿ecie dodawaæ jakieœ informacje.

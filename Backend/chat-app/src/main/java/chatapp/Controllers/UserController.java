@@ -54,12 +54,6 @@ public class UserController
         return userRepository.findAll();
     }
 
-    /*@GetMapping("/all")
-    public List<User> getAllUsers()
-    {
-        return userRepository.findAll();
-    }*/
-
     @GetMapping("/{id}")
     public @ResponseBody Iterable<User> getUser(@PathVariable(value = "id") Integer userId)
     {

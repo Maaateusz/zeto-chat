@@ -26,9 +26,4 @@ public class RoomController
         return roomRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public @ResponseBody Iterable<Room> getRoom(@PathVariable(value = "id") Integer roomId)
-    {
-        return roomRepository.findRoomById(roomId);
-    }
 }

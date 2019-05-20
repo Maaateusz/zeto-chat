@@ -1,13 +1,12 @@
 package chatapp.Controllers;
 
+import chatapp.DataBase.RoomRepository;
 import chatapp.Models.Message;
+import chatapp.Models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,43 +17,44 @@ import java.util.List;
 @CrossOrigin
 public class MessageController
 {
-    //@Autowired
-    //private Message message;
+    @Autowired
+    private RoomRepository roomRepository;
+
+    String path = "C:\\Users\\Mateusz\\Desktop\\zesp\\zeto-chat\\Rooms\\";  //scierzka na serwerze do plików z wiadomościami
 
     @PostMapping("/add")
-    public String addPostMessage(/*@Valid*/ @RequestBody Message message) throws IOException
+    public Void addPostMessage(@RequestBody Message message) throws IOException
     {
-        String fileName = "C:\\Users\\Mateusz\\Desktop\\zesp\\zeto-chat_old\\Rooms\\room1.html";
+        Room room = roomRepository.findRoomById(message.getRoomId());
+        String roomName = room.getName();
+        String fileName = path + roomName + ".json";
+        String str = ",{" + '"' + "user" + '"' + ':' + '"' + message.getUser() + '"' + ',' + '"' + "message" + '"' + ':' + '"' + message.getContent() + '"' + '}';
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.append(' ');
+        writer.append(str);
 
-        String str = "Hello";
-
-        Path path = Paths.get(fileName);
-        byte[] strToBytes = str.getBytes();
-
-        Files.write(path, strToBytes);
-
-        String read = Files.readAllLines(path).get(0);
-        //assertEquals(str, read);
-
-        return "Zapisano"+ read;
-    }
-
-    @GetMapping("/{id}")
-    public @ResponseBody List<Message> getMessages(@PathVariable(value = "id") Integer roomId)
-    {
-        //return roomRepository.findRoomById(roomId);
+        writer.close();
         return null;
     }
 
-    /*@GetMapping("/test")
-    public void givenWritingStringToFile_whenUsingPrintWriter_thenCorrect() throws IOException
+    @GetMapping("/{id}")
+    private String readFromInputStream(@PathVariable(value = "id") Integer roomId) throws IOException
     {
-        String fileName = "C:\\Users\\Mateusz\\Desktop\\zesp\\zeto-chat\\Rooms\\room1.html";
-        FileWriter fileWriter = new FileWriter(fileName);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print("Some String");
-        printWriter.printf("Product name is %s and its price is %d $", "iPhone", 1000);
-        printWriter.close();
-    }*/
+        Room room = roomRepository.findRoomById(roomId);
+        String roomName = room.getName();
+
+        InputStream inputStream = new FileInputStream(new File(path + roomName + ".json"));;
+
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream)))
+        {
+            String line;
+            while ((line = br.readLine()) != null)
+            {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        return resultStringBuilder.toString() + ']';
+    }
 
 }
