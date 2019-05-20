@@ -1,9 +1,41 @@
-<h1>Rejestracja</h1>
-<form name="form" #f="ngForm" (submit)="registration()">
-  <input type="text" name="name" [(ngModel)]="user.name" />Name: {{user.name}} <br>
-  <input type="password" name="password" [(ngModel)]="user.password" />Password: {{user.password}} <br>
-  <input type="password" name="password2" [(ngModel)]="password2" />Password2: {{password2}} <br>
-  <button type="submit">Create</button>
-</form>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<a routerLink="/login">Login</a>
+
+<body>
+  <div id="registration">
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+          <div id="login-box" class="col-md-12">
+            <h3 class="text-center text-info">Rejestracja</h3>
+
+              <form name="form" #f="ngForm" (submit)="registration()">
+                <div class="form-group">
+                  <label for="username" class="text-info">Nazwa użytkownika:</label><br>
+                  <input type="text" name="name" class="form-control" [(ngModel)]="user.name" /><!--Name: {{user.name}} <br>-->
+                </div>
+                <div class="form-group">
+                  <label for="password" class="text-info">Hasło:</label><br>
+                  <input type="password" name="password" class="form-control" [(ngModel)]="user.password" /><!--Password: {{user.password}} <br>-->
+                </div>
+                <div class="form-group">
+                  <label for="password" class="text-info">Powtórz hasło:</label><br>
+                  <input type="password" name="password2" class="form-control" [(ngModel)]="password2" /><!--Password2: {{password2}} <br>-->
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info btn-md">Stwórz</button>
+                </div>
+                <div id="login-link" class="text-right">
+                  <a class="text-info" routerLink="/login">Zaloguj</a>
+                </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+

@@ -1,8 +1,34 @@
-<h1>Logowanie</h1>
-<form name="form" #f="ngForm" (submit)="login()">
-  <input type="text" name="name" [(ngModel)]="user.name" />Name: {{user.name}} <br>
-  <input type="password" name="password" [(ngModel)]="user.password" />Password: {{user.password}} <br>
-  <button type="submit">Login</button>
-</form>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<a routerLink="/registration">Create Account</a>
+<body>
+  <div id="login">
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+          <div id="login-box" class="col-md-12">
+            <h3 class="text-center text-info">Logowanie</h3>
+
+            <form name="form" #f="ngForm" (submit)="login()">
+                <div class="form-group">
+                    <label for="username" class="text-info">Nazwa użytkownika:</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="user.name" /><!--Name: {{user.name}} <br>-->
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-info">Hasło:</label>
+                    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" /><!--Password: {{user.password}} <br>-->
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info btn-md">Zaloguj</button>
+                </div>
+                <div id="register-link" class="text-right">
+                    <a class="text-info" routerLink="/registration">Załóż konto</a>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
