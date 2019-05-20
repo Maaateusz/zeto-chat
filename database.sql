@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Maj 2019, 19:54
+-- Czas generowania: 20 Maj 2019, 16:32
 -- Wersja serwera: 10.1.36-MariaDB
 -- Wersja PHP: 7.2.10
 
@@ -55,10 +55,8 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`) VALUES
-(1, 'room1'),
-(2, 'pokojKom'),
-(20, 'Allah Akhbar'),
-(21, 'Jol oasdlf oasdk fhjbasddasdhfb sdbnfsdbfd,ad');
+(0, 'room2'),
+(1, 'room1');
 
 -- --------------------------------------------------------
 
@@ -77,12 +75,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `password`) VALUES
-(1, 'ibisz', 'dasfnlkasnfdkj'),
 (2, 'Jan', '1234567'),
-(36, 'qwe', 'qwe'),
-(42, 'asd', 'qwe'),
-(41, 'qwe3', 'qwe'),
-(40, 'qwe2', 'qwe');
+(36, 'qwe', 'qwe');
 
 --
 -- Indeksy dla zrzutów tabel
