@@ -8,7 +8,7 @@
     <!-- rooms -->
     <p>Pokoje:</p>
     <p *ngFor="let r of rooms">
-      <li (click)="getMessages(r.id)" style="border: 1px solid green; list-style-type: none;">{{r.name}}</li>
+      <li (click)="getMessages(r.id); this.senderHidden = false" style="border: 1px solid green; list-style-type: none;">{{r.name}}</li>
     </p>
   </div>
   <div>
@@ -19,14 +19,15 @@
       <p *ngFor="let m of messages">
         <li style="border: 1px solid green; list-style-type: none;">
           User: {{m.user}}<br>
-          {{m.message}}
+          <pre>{{m.message}}</pre> <!-- musi być w pre -->
         </li>
       </p>
     </div>
     <div>
       <!-- chat message input -->
-      <form name="form" #f="ngForm" (submit)="sendMessage()">
-        <textarea type="textarea" rows="3" [value]="" name="messageContent" [(ngModel)]="messageContent"></textarea> <br>
+      <form name="form" #f="ngForm" (submit)="sendMessage()" [hidden]="senderHidden">
+        <textarea autofocus wrap maxlength="200" rows="3" [value]="" name="messageContent"
+          [(ngModel)]="messageContent"></textarea>
         <button type="submit">Send</button>
         {{messageContent}}<br>
       </form>

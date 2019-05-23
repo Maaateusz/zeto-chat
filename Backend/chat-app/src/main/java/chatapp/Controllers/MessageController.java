@@ -57,4 +57,9 @@ public class MessageController
         return resultStringBuilder.toString() + ']';
     }
 
+    @GetMapping("/undefined")
+    private String undefinied(){
+        return "Wybierz pokój!";
+    }
+
 }

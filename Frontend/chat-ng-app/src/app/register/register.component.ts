@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
   }
 
   password2 = '';  //Confirmation password wiadomo o co chodzi
+  path = "http://localhost:8080/";
 
   //nie usuwać
   user: User =
@@ -25,21 +27,26 @@ export class RegisterComponent implements OnInit {
 
   //zapytanie do serwera; nie usuwać
   registration(): void {
-    let url = "http://localhost:8080/user/registration";
-    this.http.post(url, this.user).subscribe(
-      isValid => {
-        if (isValid) { //gdy stworzy się nowe konto
-          location.assign("/login?message=Now you can login");
+    this.user.name = this.user.name.trim();
+    let url = this.path + "user/registration";
+    if (this.user.password == this.password2) //jeśli wszystkie pola są poprawne
+    {
+      this.http.post(url, this.user).subscribe(
+        isValid => {
+          if (isValid) { //gdy stworzy się nowe konto
+            location.assign("/login?message=Now you can login");
+          }
+          else { //gdy się nie stworzy konta
+            alert("Error");
+          }
         }
-        else { //gdy się nie stworzy konta
-          alert("Error"); 
-        }
-      }
-      /*res => { 
-        location.assign("/login?message=Now you can login"); },
-      err => {
-        alert("Error"); }*/
-    );
+        /*res => { 
+          location.assign("/login?message=Now you can login"); },
+        err => {
+          alert("Error"); }*/
+      );
+    }
+    else alert("Hasła się nie zgadzają!");
   }
 
 }

@@ -16,8 +16,10 @@ export class ChatComponent implements OnInit {
   messageContent: string = '';
   name: string = '';
   password: string = '';
-  refresh;
+  refresh: NodeJS.Timer;
+  senderHidden = true;
   path = "http://localhost:8080/";
+
   /*room: Room =
     {
       id: 1,
@@ -35,7 +37,8 @@ export class ChatComponent implements OnInit {
     this.getAllRooms();
     this.refresh = setInterval(() => {
       this.getMessages(this.roomId);
-    }, 1000);
+    }, 1500); //interval 1,5 sek
+    //clearInterval(this.refresh);
   }
 
   checkSession() {
@@ -58,9 +61,10 @@ export class ChatComponent implements OnInit {
     this.message =
       {
         user: this.name,
-        content: this.messageContent,
+        content: this.messageContent.replace(new RegExp('\n', 'g'), "\\n"),
         roomId: this.roomId
       };
+    this.messageContent = '';
   }
 
   sendMessage() {
@@ -91,11 +95,13 @@ export class ChatComponent implements OnInit {
   }
 
   getMessages(id) {
+    //this.senderHidden = false;
     this.roomId = id;
     let url = this.path + "/message/" + id;
     this.http.get<Message[]>(url).subscribe(
       res => {
         this.messages = res;
+        console.log(res);
       },
       err => {
         //alert("Errssss!")

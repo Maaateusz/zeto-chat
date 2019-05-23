@@ -19,7 +19,7 @@ http://localhost:8080/
 /message/id wiadomoœci z pokoju o id
 /message/add dodanie wiadomoœci 
 
-=> Dzia³a rejestracja, logowanie i wiadomoœci, tylko ¿e nie najlepiej, np. nie mo¿na wysy³aæ nic enterem bo siê wszystko popsuje.
+=> Dzia³a rejestracja, logowanie, wiadomoœci i pokoje (ale tylko te które ju¿ s¹, nwm czy dodawaæ mo¿liwoœæ tworzenia w³asnych bo to masa pracy by by³a).
 
 /========================================\
 Angular:
