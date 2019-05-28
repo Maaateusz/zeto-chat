@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
   messageContent: string = '';
   name: string = '';
   password: string = '';
-  refresh: NodeJS.Timer;
+  refresh;
   senderHidden = true;
   path = "http://localhost:8080/";
 
