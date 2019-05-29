@@ -5,6 +5,7 @@ import { Message } from "../message";
 import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
 import { template } from '@angular/core/src/render3';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { User_Room } from "../user_room";
 
 @Component({
   selector: 'app-chat',
@@ -15,12 +16,15 @@ export class ChatComponent implements OnInit {
 
   rooms: Room[] = [];
   messages: Message[] = [];
+  user_rooms: User_Room[] = [];
   roomId: number;
   messageContent: string = '';
   name: string = '';
   password: string = '';
   refresh;
   senderHidden = true;
+  newRoomName: string;
+  createRoomName: string;
   path = "http://localhost:8080/";
 
   /*room: Room =
@@ -37,7 +41,7 @@ export class ChatComponent implements OnInit {
   {
     this.getLocal();
     this.checkSession();
-    this.getAllRooms();
+    this.getAllUserRooms();
     this.refresh = setInterval(() => {
       this.getMessages(this.roomId);
     }, 1500); //interval 1,5 sek
@@ -90,6 +94,50 @@ export class ChatComponent implements OnInit {
     
   }
 
+  createRoom() {
+    let url = this.path + "room/add";
+    this.http.post(url, { "id": "", "name": this.createRoomName }).subscribe(
+      isValid => {
+        if (isValid) {
+          this.newRoomName = this.createRoomName;
+          this.addRoom();
+          alert("Stworzono nowy pokój");
+        }
+        else {
+          alert("Error");
+        }
+      },
+      error => { alert("error"); }
+    );
+  }
+
+  addRoom() {
+    let url = this.path + "room/add/user";
+    this.http.post(url, { "id": "", "userId": "", "userName": this.name, "roomId": "", "roomName": this.newRoomName }).subscribe(
+      isValid => {
+        if (isValid) {
+          alert("Dodano pokój! Odświerz stronę kurwo!");
+        }
+        else {
+          alert("Error");
+        }
+      },
+      error => { }
+    );
+  }
+
+  getAllUserRooms() {
+    let url = this.path + "room/user/" + this.name;
+    this.http.get<User_Room[]>(url).subscribe(
+      res => {
+        this.user_rooms = res;
+      },
+      err => {
+        alert("Errorrinhoo!")
+      }
+    );
+  }
+  
   getAllRooms() {
     let url = this.path + "room/all";
     this.http.get<Room[]>(url).subscribe(

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Maj 2019, 16:32
+-- Czas generowania: 29 Maj 2019, 18:47
 -- Wersja serwera: 10.1.36-MariaDB
 -- Wersja PHP: 7.2.10
 
@@ -37,7 +37,9 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(43);
+(22),
+(22),
+(22);
 
 -- --------------------------------------------------------
 
@@ -55,8 +57,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`) VALUES
-(0, 'room2'),
-(1, 'room1');
+(19, 'pokojMateusza');
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,35 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `password`) VALUES
 (2, 'Jan', '1234567'),
-(36, 'qwe', 'qwe');
+(18, 'Mateusz', 'qwe'),
+(3, 'qwe', 'qwe'),
+(1, 'Marik', 'qwe');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `user_room`
+--
+
+CREATE TABLE `user_room` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `userName` varchar(250) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  `roomName` varchar(250) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `room_name` varchar(255) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_polish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Zrzut danych tabeli `user_room`
+--
+
+INSERT INTO `user_room` (`id`, `userId`, `userName`, `roomId`, `roomName`, `room_id`, `room_name`, `user_id`, `user_name`) VALUES
+(20, NULL, NULL, NULL, NULL, 19, 'pokojMateusza', 18, 'Mateusz'),
+(21, NULL, NULL, NULL, NULL, 19, 'pokojMateusza', 1, 'Marik');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -92,6 +121,12 @@ ALTER TABLE `room`
 -- Indeksy dla tabeli `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `user_room`
+--
+ALTER TABLE `user_room`
   ADD PRIMARY KEY (`id`);
 COMMIT;
 

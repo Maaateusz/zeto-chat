@@ -18,8 +18,9 @@ http://localhost:8080/
 /room/{id} 
 /message/id wiadomoœci z pokoju o id
 /message/add dodanie wiadomoœci 
+itp. 
 
-=> Dzia³a rejestracja, logowanie, wiadomoœci i pokoje (ale tylko te które ju¿ s¹, nwm czy dodawaæ mo¿liwoœæ tworzenia w³asnych bo to masa pracy by by³a).
+=> Dzia³a rejestracja, logowanie, wiadomoœci i pokoje.
 
 /========================================\
 Angular:
@@ -71,6 +72,11 @@ W razie pytañ piszcie.
 
 
 
-
+PRZYGOTOWANIE
+Miêso pokroiæ w kostkê. Cebulê pokroiæ w kosteczkê i zeszkliæ na oleju w du¿ym garnku. Dodaæ miêso i dok³adnie je obsma¿yæ.
+Wlaæ 2 szklanki gor¹cej wody, posoliæ, doprawiæ pieprzem i zagotowaæ. Nastêpnie dodaæ po³amane suszone grzyby, przykryæ, zmniejszyæ ogieñ i gotowaæ przez ok. 45 minut.
+Dodaæ listek laurowy, ziela angielskie, kminek, majeranek, powid³a œliwkowe lub posiekane œliwki, obrane i pokrojone w kosteczkê obrane jab³ko i wymieszaæ.
+Dodaæ kiszon¹ kapustê (jeœli jest kwaœna nale¿y j¹ wczeœniej wyp³ukaæ na sitku), wlaæ szklankê wody, wymieszaæ, przykryæ i gotowaæ do miêkkoœci kapusty przez ok. 45 minut. Mniej wiêcej w po³owie gotowania dodaæ obran¹ i pokrojon¹ na kawa³eczki kie³basê. Pod koniec dodaæ koncentrat pomidorowy.
+M¹kê podsma¿yæ na suchej patelni, gdy zacznie br¹zowieæ dodaæ ³y¿kê mas³a i mieszaæ a¿ mas³o siê rozpuœci. Trzymaj¹c patelniê na ogniu dodaæ stopniowo kilka ³y¿ek kapusty ca³y czas mieszaj¹c. Prze³o¿yæ zawartoœæ patelni z powrotem do garnka, wymieszaæ i zagotowaæ.
 
 

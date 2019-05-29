@@ -1,6 +1,7 @@
 package chatapp.Controllers;
 
 import chatapp.DataBase.RoomRepository;
+import chatapp.DataBase.UserRepository;
 import chatapp.DataBase.User_RoomRepository;
 import chatapp.Models.Message;
 import chatapp.Models.Room;
@@ -25,6 +26,9 @@ public class RoomController
     private RoomRepository roomRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private User_RoomRepository user_roomRepository;
 
     @PostMapping("/add")
@@ -39,7 +43,7 @@ public class RoomController
 
         String roomName = room.getName();
         String fileName = path + roomName + ".json";
-        String str = "[{\"user\":\"System\",\"message\":\"Witaj! Napisz coś.\"}, ";
+        String str = "[{\"user\":\"System\",\"message\":\"Witaj! Napisz coś.\"} ";
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         //writer.append(' ');
         writer.append(str);
@@ -48,13 +52,20 @@ public class RoomController
         return room;
     }
 
-    @PostMapping("/user/add")
+    @PostMapping("/add/user")
     public User_Room addPostUserRoom( @RequestBody User_Room user_room)
     {
         /*if(user_roomRepository.findById(user_room.getUser_id()))
         {
 
         }*/
+
+        if( roomRepository.findRoomByName(user_room.getRoomName()) == null) return null;
+        Room roomInfo = roomRepository.findRoomByName(user_room.getRoomName());
+        User userInfo = userRepository.findUserByName(user_room.getUserName());
+
+        user_room.setUserId(userInfo.getId());
+        user_room.setRoomId(roomInfo.getId());
         return user_roomRepository.save(user_room);
         //return user.toString();
     }
@@ -69,6 +80,18 @@ public class RoomController
     public @ResponseBody Iterable<User_Room> getAllUsersRooms()
     {
         return user_roomRepository.findAll();
+    }
+
+    /*@GetMapping("/user/{id}")
+    public @ResponseBody Iterable<User_Room> getUsersRooms(@PathVariable(value = "id") Integer user_id)
+    {
+        return user_roomRepository.findByUserId(user_id);
+    }*/
+
+    @GetMapping("/user/{name}")
+    public @ResponseBody Iterable<User_Room> getUsersRooms2(@PathVariable(value = "name") String name)
+    {
+        return user_roomRepository.findByUserName(name);
     }
 
     @GetMapping("/all")
