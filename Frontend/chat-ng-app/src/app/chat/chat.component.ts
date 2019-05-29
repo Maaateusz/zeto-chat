@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Room } from "../room";
 import { Message } from "../message";
+import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
+import { template } from '@angular/core/src/render3';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-chat',
@@ -59,27 +62,32 @@ export class ChatComponent implements OnInit {
 
   setMessage() {
     this.message =
-      {
-        user: this.name,
-        content: this.messageContent.replace(new RegExp('\n', 'g'), "\\n"),
-        roomId: this.roomId
-      };
+    {
+      user: this.name,
+      content: this.messageContent.replace(new RegExp('\n', 'g'), "\\n"),
+      roomId: this.roomId
+    };
     this.messageContent = '';
   }
 
   sendMessage() {
     let url = this.path + "message/add";
-    this.setMessage();
-    this.http.post(url, this.message).subscribe(
-      isValid => {
-        if (isValid) { //gdy wysyłamy
-          //alert("wysłano");       //tu coś nie działa
+    
+    if (this.messageContent != '')
+    {
+      this.setMessage();
+      this.http.post(url, this.message).subscribe(
+        isValid => {
+          if (isValid) { //gdy wysyłamy
+            //alert("wysłano");       //tu coś nie działa
+          }
+          else {
+            //alert("Error");
+          }
         }
-        else {
-          //alert("Error");
-        }
-      }
-    );
+      );
+    }
+    
   }
 
   getAllRooms() {
@@ -107,6 +115,16 @@ export class ChatComponent implements OnInit {
         //alert("Errssss!")
       }
     );
+    document.getElementById("messageBody").scrollTop = document.getElementById("messageBody").scrollHeight;
+  }
+
+  activateButton(r) {
+    for (let r2 of this.rooms)
+    {
+      r2.active = false;
+    }
+
+    if (!r.active) r.active = !r.active;
   }
 
 }

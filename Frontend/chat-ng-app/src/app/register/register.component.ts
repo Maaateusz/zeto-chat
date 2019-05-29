@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
             location.assign("/login?message=Now you can login");
           }
           else { //gdy się nie stworzy konta
-            alert("Error");
+            //alert("Error");
           }
         }
         /*res => { 
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
           alert("Error"); }*/
       );
     }
-    else alert("Hasła się nie zgadzają!");
+    //else alert("Hasła się nie zgadzają!");
   }
 
 }

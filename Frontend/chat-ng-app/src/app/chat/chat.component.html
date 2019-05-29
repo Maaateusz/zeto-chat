@@ -1,37 +1,45 @@
-<div>
-  <div>
-    <!-- user info -->
-    Name: {{name}}<br>
-    Password: {{password}}
-  </div>
-  <div style="border: 1px solid red;">
-    <!-- rooms -->
-    <p>Pokoje:</p>
-    <p *ngFor="let r of rooms">
-      <li (click)="getMessages(r.id); this.senderHidden = false" style="border: 1px solid green; list-style-type: none;">{{r.name}}</li>
-    </p>
-  </div>
-  <div>
-    <!-- chat -->
-    <div style="border: 1px solid red;">
-      <!-- chat content -->
-      <p>Wiadomości:</p>
-      <p *ngFor="let m of messages">
-        <li style="border: 1px solid green; list-style-type: none;">
-          User: {{m.user}}<br>
-          <pre>{{m.message}}</pre> <!-- musi być w pre -->
-        </li>
-      </p>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="left-panel col-lg-3">
+        <div class="user">
+            Zalogowany jako:<br>
+            {{name}} <br>
+            <button type="submit" class="btn btn-info logout" (click)="logout()">Logout</button>
+        </div>
+        <div class="rooms list-group">
+          <p>Pokoje:</p>
+          <p *ngFor="let r of rooms">
+            <li [ngClass]="{'alpha': r.active, 'beta': !r.active}" id="temp" (click)="getMessages(r.id); activateButton(r); this.senderHidden = false; this.holderHidden = true" style="list-style-type: none;">{{r.name}}</li>
+          </p>
+        </div>
+      </div>
+      <div class="message-wrap col-lg-8">
+        <div class="msg-wrap" id="messageBody">
+          <p *ngFor="let m of messages">
+            <li style="list-style-type: none;">
+              {{m.user}}:<br>
+              <pre>{{m.message}}</pre> <!-- musi być w pre -->
+            </li>
+          </p>
+        </div>
+        
+        <div class="send-wrap ">
+          <div class="place-holder" [hidden]="holderHidden">
+            <label>Dołącz do pokoju by zacząć rozmawiać!</label>
+          </div>
+          <form name="form" #f="ngForm" (submit)="sendMessage()" [hidden]="senderHidden">
+          <textarea class="form-control send-message" required="required" type="textarea" rows="3" [value]="" name="messageContent" placeholder="Write a reply..." [(ngModel)]="messageContent"></textarea> <br>
+          <button type="submit" class="btn">Send</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <div>
-      <!-- chat message input -->
-      <form name="form" #f="ngForm" (submit)="sendMessage()" [hidden]="senderHidden">
-        <textarea autofocus wrap maxlength="200" rows="3" [value]="" name="messageContent"
-          [(ngModel)]="messageContent"></textarea>
-        <button type="submit">Send</button>
-        {{messageContent}}<br>
-      </form>
-    </div>
   </div>
-  <button type="submit" (click)="logout()">Logout</button>
-</div>
+</body>

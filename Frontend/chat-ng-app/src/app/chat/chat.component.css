@@ -1,0 +1,88 @@
+body {
+    background-color: #17a2b8;
+}
+
+.alpha {
+    background-color: RGB(94,170,255);
+    padding: 10px 20px;
+}
+
+.beta {
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.user {
+    width: 80%;
+    margin: 25px auto;
+}
+
+.rooms {
+    width: 80%;
+    margin: 25px auto;
+}
+
+.row {
+    padding: 50px 0 0 50px;
+    height: auto;
+    display: flex;
+    flex-flow: row column;
+}
+
+.left-panel {
+    background: #f8f8f8;
+    box-shadow: -2px 0 3px #ddd;
+    padding: 0;
+    overflow: auto;
+}
+
+.message-wrap {
+    box-shadow: 0 0 3px #ddd;
+    padding:0;
+    height: 650px;
+}
+
+.msg {
+    padding:5px;
+    /*border-bottom:1px solid #ddd;*/
+    margin:0;
+}
+
+.msg-wrap {
+    padding: 10px;
+    background: white;
+    height: 500px;
+    overflow: auto;
+}
+
+.kappa {
+    background: black;
+}
+
+.place-holder {
+    background: #f8f8f8;
+    height: 128px;
+}
+
+.send-wrap {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding:10px;
+    background: #f8f8f8;
+}
+
+.send-message {
+    resize: none;
+}
+
+.btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.msg-wrap .media-heading {
+    color:#003bb3;
+    font-weight: 700;
+}
