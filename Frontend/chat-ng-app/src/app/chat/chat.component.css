@@ -2,6 +2,17 @@ body {
     background-color: #17a2b8;
 }
 
+.przycisk {
+    width: 30%;
+}
+
+.przyciskLogout {
+    width: 30%;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+}
+
 .alpha {
     background-color: RGB(94,170,255);
     padding: 10px 20px;
@@ -12,12 +23,24 @@ body {
     padding: 10px 20px;
 }
 
+.beta:hover {
+    background-color: RGB(131,199,192); 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .user {
     width: 80%;
     margin: 25px auto;
 }
 
-.rooms {
+.room-wrap {
+    height: 264px;
+    width: 80%;
+    margin: 25px auto;
+    overflow: auto;
+}
+
+.manageRooms {
     width: 80%;
     margin: 25px auto;
 }

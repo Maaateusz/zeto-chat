@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 @Component({
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   password2 = '';  //Confirmation password wiadomo o co chodzi
   path = "http://localhost:8080/";
 
@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
         isValid => {
           if (isValid) { //gdy stworzy się nowe konto
             location.assign("/login?message=Now you can login");
+            document.getElementById("info").removeAttribute("hidden");
           }
           else { //gdy się nie stworzy konta
             //alert("Error");

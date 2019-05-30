@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',

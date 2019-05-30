@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Room } from "../room";
 import { Message } from "../message";
@@ -6,6 +6,8 @@ import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
 import { template } from '@angular/core/src/render3';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { User_Room } from "../user_room";
+import { stringify } from '@angular/core/src/render3/util';
+
 
 @Component({
   selector: 'app-chat',
@@ -167,7 +169,7 @@ export class ChatComponent implements OnInit {
   }
 
   activateButton(r) {
-    for (let r2 of this.rooms)
+    for (let r2 of this.user_rooms)
     {
       r2.active = false;
     }
