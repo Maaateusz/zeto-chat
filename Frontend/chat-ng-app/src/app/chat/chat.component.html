@@ -11,7 +11,7 @@
           <div class="user">
               Zalogowany jako:<br>
               {{name}} <br>
-              <button type="submit" class="btn btn-info logout przyciskLogout" (click)="login()">Logout</button>
+              <button type="submit" class="btn btn-info logout przyciskLogout" (click)="logout()">Logout</button>
           </div>
         <div class="room-wrap list-group">
           <p>Pokoje:</p>
@@ -28,7 +28,6 @@
               <label for="" class="text-info">Nazwa:</label>
               <input type="text" name="newRoomName" class="form-control" [(ngModel)]="newRoomName" />
               <button type="submit" class="btn btn-info btn-md przycisk">Join</button>
-              {{newRoomName}}
             </form>
           </div>
           <br>
@@ -38,7 +37,6 @@
               <label for="" class="text-info">Nazwa:</label>
               <input type="text" name="createRoomName" class="form-control" [(ngModel)]="createRoomName" />
               <button type="submit" class="btn btn-info btn-md przycisk">Create</button>
-              {{createRoomName}}
             </form>
           </div>
         </div>
@@ -60,7 +58,7 @@
           <form name="form" #f="ngForm" (submit)="sendMessage()" [hidden]="senderHidden">
             <textarea class="form-control send-message" required="required" type="textarea" rows="3" [value]=""
               name="messageContent" placeholder="Write a reply..." [(ngModel)]="messageContent"></textarea> <br>
-            <button type="submit" class="btn">Send</button>
+            <button type="submit" class="btn przycisk">Send</button>
           </form>
         </div>
       </div>

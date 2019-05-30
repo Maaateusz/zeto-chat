@@ -118,7 +118,7 @@ export class ChatComponent implements OnInit {
     this.http.post(url, { "id": "", "userId": "", "userName": this.name, "roomId": "", "roomName": this.newRoomName }).subscribe(
       isValid => {
         if (isValid) {
-          alert("Dodano pokój! Odświerz stronę kurwo!");
+          alert("Dodano pokój! Odświerz stronę!");
         }
         else {
           alert("Error");
