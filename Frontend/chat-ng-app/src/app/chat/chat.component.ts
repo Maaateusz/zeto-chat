@@ -46,7 +46,7 @@ export class ChatComponent implements OnInit {
     this.getAllUserRooms();
     this.refresh = setInterval(() => {
       this.getMessages(this.roomId);
-    }, 1500); //interval 1,5 sek
+    }, 1000); //interval 1,5 sek
     //clearInterval(this.refresh);
   }
 
@@ -68,19 +68,18 @@ export class ChatComponent implements OnInit {
 
   setMessage() {
     this.message =
-    {
-      user: this.name,
-      content: this.messageContent.replace(new RegExp('\n', 'g'), "\\n"),
-      roomId: this.roomId
-    };
+      {
+        user: this.name,
+        content: this.messageContent.replace(new RegExp('\n', 'g'), "\\n"),
+        roomId: this.roomId
+      };
     this.messageContent = '';
   }
 
   sendMessage() {
     let url = this.path + "message/add";
-    
-    if (this.messageContent != '')
-    {
+
+    if (this.messageContent != '') {
       this.setMessage();
       this.http.post(url, this.message).subscribe(
         isValid => {
@@ -93,7 +92,7 @@ export class ChatComponent implements OnInit {
         }
       );
     }
-    
+
   }
 
   createRoom() {
@@ -139,7 +138,7 @@ export class ChatComponent implements OnInit {
       }
     );
   }
-  
+
   getAllRooms() {
     let url = this.path + "room/all";
     this.http.get<Room[]>(url).subscribe(
@@ -169,12 +168,16 @@ export class ChatComponent implements OnInit {
   }
 
   activateButton(r) {
-    for (let r2 of this.user_rooms)
-    {
+    for (let r2 of this.user_rooms) {
       r2.active = false;
     }
 
     if (!r.active) r.active = !r.active;
+  }
+
+  userCheck(nameU: string) {
+    if (this.name == nameU) { return 'userMessage'; }
+    else { return null; }
   }
 
 }

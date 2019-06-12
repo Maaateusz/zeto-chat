@@ -8,11 +8,11 @@
   <div class="container">
     <div class="row">
       <div class="left-panel col-lg-3">
-          <div class="user">
-              Zalogowany jako:<br>
-              {{name}} <br>
-              <button type="submit" class="btn btn-info logout przyciskLogout" (click)="logout()">Logout</button>
-          </div>
+        <div class="user">
+          Zalogowany jako:<br>
+          <b>{{name}}</b> <br>
+          <button type="submit" class="btn btn-info logout przyciskLogout" (click)="logout()">Logout</button>
+        </div>
         <div class="room-wrap list-group">
           <p>Pokoje:</p>
           <p *ngFor="let r of user_rooms">
@@ -26,7 +26,7 @@
             Dołącz do pokoju
             <form name="addRoomForm" #f="ngForm" (submit)="addRoom()">
               <label for="" class="text-info">Nazwa:</label>
-              <input type="text" name="newRoomName" class="form-control" [(ngModel)]="newRoomName" />
+              <input type="text" name="newRoomName" class="form-control" [(ngModel)]="newRoomName" minlength="3" />
               <button type="submit" class="btn btn-info btn-md przycisk">Join</button>
             </form>
           </div>
@@ -35,7 +35,8 @@
             Stwórz nowy pokój
             <form name="createRoomForm" #f="ngForm" (submit)="createRoom()">
               <label for="" class="text-info">Nazwa:</label>
-              <input type="text" name="createRoomName" class="form-control" [(ngModel)]="createRoomName" />
+              <input type="text" name="createRoomName" class="form-control" [(ngModel)]="createRoomName"
+                minlength="3" />
               <button type="submit" class="btn btn-info btn-md przycisk">Create</button>
             </form>
           </div>
@@ -45,8 +46,8 @@
         <div class="msg-wrap" id="messageBody">
           <p *ngFor="let m of messages">
             <li style="list-style-type: none;">
-              {{m.user}}:<br>
-              <pre>{{m.message}}</pre> <!-- musi być w pre -->
+              {{m.user}}<br>
+              <pre [className]="userCheck(m.user)">{{m.message}}</pre> <!-- musi być w pre -->
             </li>
           </p>
         </div>
